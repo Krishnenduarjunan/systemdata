@@ -1,0 +1,23 @@
+https://github.com/Krishnenduarjunan/myproject.git
+
+https://github.com/Krishnenduarjunan/SimpleBankingSystem.git
+
+junit link
+https://www.guru99.com/download-installation-junit.html
+
+mysql link
+https://www.mysqltutorial.org/mysql-sample-database.aspx
+
+jenkins link
+https://www.jenkins.io/
+
+junit with jenkins
+https://github.com/mahammadalthaf/jenkins-junit-maven-example
+
+cd "C:\Program Files\Docker\Docker"
+./DockerCli.exe -SwitchDaemon
+
+searching algo
+https://www.javatpoint.com/linear-search
+
+link for eclipse-http://download.eclipse.org/releases/oxygen.

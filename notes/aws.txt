@@ -1,0 +1,15 @@
+aws --version
+sam --version
+where aws
+aws configure
+
+sam init
+
+link-> https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/welcome.html
+
+-------------------------------------------------------------------------------------
+
+git acess token - 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
+
+for push using access token
+git push https://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@github.com/Krishnenduarjunan/awsdeploy.git

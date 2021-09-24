@@ -1,0 +1,275 @@
+﻿>>show dbs - Show databases
+>>use demodb - create a database with a name demodb
+>>show dbs - It will not show the demodb as there is no data in the database
+db.employee.insert(
+{
+	"name":"Parag Joshi"})
+>>show dbs - It will show our database demodb
+>>db.dropDatabase() - drop the database from mongodb
+
+------------------------------------------------------------
+
+db.employee.insert(
+{
+	ename:"Parag",
+	eage:41,
+	details:{
+		education:"MBA",
+		experience:20
+	},
+	address:["Pune","Maharashtra",411017],
+	salary: 10000,
+	designation: "Manager"
+}
+)
+
+db.employee.insert(
+{
+	ename:"Prachi",
+	eage:40,
+	details:{
+		education:"MBA",
+		experience:10
+	},
+	address:["Pune","Maharashtra",411027],
+	salary: 11000,
+	designation: "Manager"
+}
+)
+
+db.employee.insertOne({
+	_id : 100,
+	ename:"Manas",
+	eage:18,
+	details:{
+		education:"Diploma",
+		experience:1
+	},
+	address:["Mumbai","Maharashtra",400001],
+	salary: 10000,
+	designation: "Designer"
+})
+
+db.employee.insertMany(
+	[
+	{
+	_id : 101,
+	ename:"Daesha",
+	eage:20,
+	salary: 11000,
+	designation: "Tester"
+	},
+	{
+	_id : 102,
+	ename:"Eeshan",
+	eage:22,
+	details:{
+		education:"Diploma",
+		experience:2
+	},
+	address:["Mumbai","Maharashtra",400021],
+	salary: 15000,
+	designation: "Developer"
+	},
+	{
+	_id : 103,
+	ename:"Ritesh",
+	eage:28,
+	salary: 12000,
+	designation: "Designer"
+	}
+	]
+)
+------------------------------------------------------
+
+db.employee.find() - Displays all the documents inside the collection
+db.employee.find().pretty() - Display all documents in formatted manner
+
+/* $eq, $gt, $lt, $gte, $lte, $ne, $in,$nin*/
+
+db.employee.find(
+{
+designation:
+{
+$eq:"Designer"
+}
+})
+db.employee.find({salary:{$gt:12000}}).pretty()
+db.employee.find({salary:{$gte:12000}}).pretty()
+db.employee.find({designation:{$in:["Manager","Developer"]}})
+db.employee.find({designation:{$nin:["Manager","Developer"]}})
+
+db.employee.find(
+{
+$and:
+[
+{designation:{$eq:"Manager"}},
+{salary:{$gt:10000}}
+]
+})
+
+db.employee.find({$or:[{designation:{$eq:"Manager"}},{salary:{$gt:12000}}]})
+db.employee.find({salary:{$not:{$gt:12000}}}).pretty()
+
+db.employee.find({address:{$eq:"Mumbai"}}).pretty()
+db.employee.find({"details.education":{$eq:"Diploma"}}).pretty()
+db.employee.find({address:{$exists:false}})
+db.employee.find({address:{$exists:true}})
+
+------------------------------------------------------------------
+
+db.articles.insert(
+   [
+     { _id: 1, subject: "coffee", author: "xyz", views: 50 },
+     { _id: 2, subject: "Coffee Shopping", author: "efg", views: 5 },
+     { _id: 3, subject: "Baking a cake", author: "abc", views: 90  },
+     { _id: 4, subject: "baking", author: "xyz", views: 100 },
+     { _id: 5, subject: "Café Con Leche", author: "abc", views: 200 },
+     { _id: 6, subject: "Сырники", author: "jkl", views: 80 },
+     { _id: 7, subject: "coffee and cream", author: "efg", views: 10 },
+     { _id: 8, subject: "Cafe con Leche", author: "xyz", views: 10 }
+   ]
+)
+
+db.articles.createIndex( { subject: "text" } )
+
+
+db.employee.find({},{"ename":1})
+db.employee.find({},{"ename":1, "details":1,_id:0})
+db.employee.find({},{"ename":0 ,"details":0,_id:0})
+db.employee.find({},{"ename":1,"details.education":1,_id:0})
+db.employee.find({salary:{$not:{$gte:12000}}},{"ename":1,"salary":1,_id:0})
+db.employee.find().limit()
+db.employee.find().limit(3)
+db.employee.find().limit(3).pretty()
+db.employee.find({},{"ename":1,"details.education":1,_id:0}).limit(2)
+db.employee.find({},{"ename":1,"details.education":1,_id:0}).limit().skip(1)
+db.employee.find({},{"ename":1,"details.education":1,_id:0}).limit(1).skip(1)
+db.employee.find({},{"ename":1,"details.education":1,_id:0}).sort({"ename":1})
+db.employee.find({},{"ename":1,"eage":1,_id:0}).sort({"ename":1,"eage":-1})
+
+db.employee.update({'salary':
+{$gt:12000}},
+{$set:{bonus : 1000}})
+db.employee.find({'salary':{$gt:12000}})
+
+db.employee.updateOne({}, {$set:{bonus : 1000,company:"VES"}})
+db.employee.updateMany({}, {$set:{bonus : 1200,company:"VES"}})
+db.employee.updateOne({"ename":"Daesha"},{$set :{email:"dj@gmail.com"}})
+
+//db.employee.remove() - remove only one record
+db.employee.remove({}) - remove all records
+db.movies.remove({year:1999})
+db.movies.insert({
+              "title" : "Fight Club",
+        "writer" : "Chuck Palahniuk",
+        "year" : 1999,
+        "actors" : [
+                "Brad Pitt",
+                "Edward Norton"
+        ]
+})
+db.movies.deleteOne({"_id" : ObjectId("611e266da4672ca042fc3630")})
+db.movies.deleteMany({"year":{$gte:2009}})
+db.employee.distinct("salary")
+db.employee.distinct("salary",{designation:"Manager"})
+
+db.articles.find({$text:{$search:"coffee"}})
+db.articles.find({$text:{$search:"bake coffee cake"}})
+db.articles.find({$text:{$search:"\"coffee shop\""}})
+db.articles.find({$text:{$search:"coffee -shop"}})
+db.articles.find({$text:{$search:"leche",$language:"es"}})
+db.articles.find({$text:{$search:"Coffee",$caseSensitive:true}})
+
+
+------------------------------------------------------------------------------------
+
+Assignment::
+
+>> create database
+
+use assignment
+
+>> creating table and inserting values
+
+db.movies.insert([
+{
+	title:"Fight Club",
+	writer:"Chuck Palahniuk",
+	year:1999,
+	actors:["Brad Pitt", "Edward Norton"]
+},
+{
+	title : "Pulp Fiction",
+	writer : "Quentin Tarantino",
+	year : 1994,
+	actors : ["John","TravoltaUma","Thurman"]
+},
+{
+	title : "Inglorious Basterds",
+	writer : "Quentin Tarantino",
+	year : 2009,
+	actors : ["Brad Pitt","Diane Kruger","Eli Roth"]
+},
+{
+	title : "The Hobbit: An Unexpected Journey",
+	writer : "J.R.R. Tolkein",
+	year : 2012,
+	franchise : "The Hobbit"
+},
+{
+	title : "The Hobbit: The Desolation of Smaug",
+	writer : "J.R.R. Tolkein",
+	year : 2013,
+	franchise : "The Hobbit"
+},
+{
+	title : "The Hobbit: The Battle of the Five Armies",
+	writer : "J.R.R. Tolkein",
+	year : 2012,
+	franchise : "The Hobbit",
+	synopsis : "Bilbo and Company are forced to engage in a war against an array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness."
+
+},	
+{
+	title : "Pee Wee Herman's Big Adventure"
+},
+{
+	title : "Avatar"
+}
+])
+
+>> Query / Find Documents
+query the movies collection to
+1.	get all documents
+
+	db.movies.find().pretty()
+
+2.	get all documents with writer set to "Quentin Tarantino"
+
+	db.movies.find({writer:{$eq:"Quentin Tarantino"}}).pretty()
+
+3.	get all documents where actors include "Brad Pitt"
+
+	db.movies.find({actors:{$eq:"Brad Pitt"}}).pretty()
+
+4.	get all documents with franchise set to "The Hobbit"
+
+	db.movies.find({franchise:{$eq:"The Hobbit"}}).pretty()
+
+5.	get all movies released in the 90s
+
+	db.movies.find({$and:[{year:{$gt:1900}},{year:{$lte:1999}}]}).pretty()
+
+6.	get all movies released before the year 2000 or after 2010
+
+	db.movies.find({$or:[{year:{$gt:2010}},{year:{$lt:2000}}]}).pretty()
+
+>> Update Documents
+1. add a synopsis to "The Hobbit: An Unexpected Journey" : "A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."
+
+	
+
+2. add a synopsis to "The Hobbit: The Desolation of Smaug" : "The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring."
+3. add an actor named "Samuel L. Jackson" to the movie "Pulp Fiction" //Next session
+
