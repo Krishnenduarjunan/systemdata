@@ -1,0 +1,156 @@
+goto Git bash
+
+git config --global user.name "krish"
+
+git config --global user.email "Krishnendu.Arjunan@ust.com"
+
+mkdir myproject
+
+cd myproject
+
+git init
+
+create files inside
+
+checking status- git status
+
+git add <fileName>
+
+git commit -m "my first commit"
+
+git commit -a
+
+git commit -a -m "second commit"
+
+git log
+
+git commit -help
+
+git help --all
+
+git branch <branch-name>
+
+git branch
+
+git checkout <branch-name>
+
+git add --all
+
+git checkout master (for going back to master)
+
+----------------------------------------------------
+
+ git checkout -b emergency-fix
+
+create a file 
+
+add and commit
+
+switch to master
+
+ git merge emergency-fix
+
+ git branch -d emergency-fix
+
+since emergency-fix is merged with master so that all the updations will be there in master
+
+-------------------------------------------------------
+
+for connecting to Git hub
+create an account in github...create new repo with the same repository name as local
+
+git remote add origin https://github.com/Krishnenduarjunan/myproject.git
+
+git push --set-upstream origin master ( login by giving username and passwd)
+
+then check the github
+
+------------------------------------------------------
+
+make some changes to file in github
+
+ git fetch origin
+
+ git diff origin/master
+
+ git merge origin/master
+
+again make some changes to file in github
+
+ git pull origin
+
+For pushing from local repo
+
+git push origin
+
+-----------------------------------------------------
+
+make a new branch in github (say Branch2)
+
+ git pull (for pulling the branch to local)
+
+ git checkout Branch2
+
+-----------------------------------------------------
+
+create a new repo in github
+
+git remote add gh-page https://github.com/Saurav-10/SecondRipo.git
+git checkout master
+git push gh-page master
+
+
+ git branch
+
+ git branch -r
+
+ git branch -a
+
+--------------------------------------------------
+
+create a new branch in local system(say Branch3). create or chnage anything, add and commit the changes.
+
+ git push origin Branch3
+
+ Go and check in github the new branch will be get pushed there
+
+----------------------------------------------------
+
+Creating a new repo with the same master
+
+git remote add gh-page https://github.com/Saurav-10/SecondRipo.git
+
+git checkout master
+
+git push gh-page master
+
+----------------------------------------------------
+
+clone a project to your repo
+
+Search and select one project
+
+ git clone https://github.com/Rohitjoshi9023/KBC--Kaun-Banega-Crorepati.git
+
+Goto master
+
+ git add KBC--Kaun-Banega-Crorepati
+
+ git commit -a -m "Adding KBC"
+
+ git remote -v
+
+ Either rename or remove origin
+ git remote rename origin downstream(for renaming the origin)
+ git remote remove origin(for removing the origin)
+
+ git remote add origin <repository-link>
+
+ git push origin
+
+--------------------------------------------------------------
+
+
+
+
+ 

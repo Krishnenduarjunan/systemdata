@@ -1,0 +1,41 @@
+create an account 
+download link -> https://www.oracle.com/in/middleware/technologies/soasuite/downloads.html
+download SOA suite
+
+open cmd in admin mode
+go to C:\Program Files\Java\jdk1.8.0_191\bin path
+then execute command
+java -jar D:\oracle\soa12c\fmw_12.2.1.4.0_soa_quickstart.jar
+
+for configuration refer - https://docs.oracle.com/middleware/1213/core/SOAQS/integrated.htm#SOAQS247
+
+
+-------------------------------------------------------------------------------------
+
+standalone server:-
+
+open cmd in admin mode
+
+cd C:\Oracle\Middleware\Oracle_Home\oracle_common\common\bin
+
+run this command:
+SET QS_TEMPLATES=C:\Oracle\Middleware\Oracle_Home\soa\common\templates\wls\oracle.soa_template.jar, C:\Oracle\Middleware\Oracle_Home\osb\common\templates\wls\oracle.osb_template.jar
+
+then run:
+qs_config.cmd
+
+after completed the processing in cmd open this link in browser:
+http://localhost:7001/console/
+give username:weblogic
+     password:........
+
+to start server(C:\Oracle\Middleware\Oracle_Home\user_projects\domains\soa_domain):
+startWebLogic.cmd
+
+----------------------------------------------------------------------------------------
+
+To create a new application in oracle jDeveloper
+
+file -> new -> application
+
+select categories as general application and items as SOA application -> OK

@@ -1,0 +1,19 @@
+open chrome and type "localhost:8080"
+username:admin
+password from C:\Program Files (x86)\Jenkins\secrets\initialAdminPassword
+
+goto manage jenkins for plugins
+upgrade if some updations available
+
+configure global security
+
+new item -> give project name -> select freestyle -> ok -> give description -> 
+go to build tab-> build step-> select "execute windows batch cmd" -> 
+write cmd <echo "this is my first build">
+
+configure -> give a descriptn -> 
+go to build tab-> build step-> select "execute windows batch cmd" -> 
+write cmd <echo "this is my first build">
+
+click build now -> check below -> select the build -> check the console output
+
